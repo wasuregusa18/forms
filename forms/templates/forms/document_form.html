@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1>Upload</h1>
+<br>
+
+{% if error %}
+<small class="text-warning"> {{error}}</small>
+{% endif %}
+    
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="file" name="template" required>
+        </div>
+
+
+        <div class="form-group">
+            <p>Mapping:</p>
+            <div id="rowContainer">
+                <div class="form-row" >
+                    <div class="col-6">
+                        <label for="cell0">Cell</label>
+                        <input class="form-control"  type="text" name="cell0" id="cell_template" placeholder="A1" required>
+                    </div>
+                    <div class="col-6" >
+                        <label for="val0">Value </label>
+                        <!-- <input type="text" name="val1" class="form-control"> -->
+                        <select class="form-control" name="val0" id="val_template">
+                            
+                            {% for prop in props %}
+                            <option value="{{prop}}">{{prop}}</option>
+                            {% endfor %}
+                                
+                          </select>
+                    </div>
+                </div>
+        
+            </div>
+        <a href="#" id="newRow" onclick="addRow()"><small>Add Row</small></a>
+
+            <br><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+      
+
+
+
+
+
+<script>
+var rowNum = 0
+const cell = document.getElementById("cell_template")
+const val = document.getElementById("val_template")
+
+function addRow(){    
+    rowNum++
+    var container = document.getElementById("rowContainer");
+    var newMappingPair = createMapping();
+    // var newMappingPair = document.createTextNode("Member " + (i+1))
+    container.appendChild(newMappingPair);
+    // container.appendChild(document.createElement("br"));
+}
+
+function createMapping(){
+    // bootstrap class
+    var row = document.createElement("div")
+    row.className = "form-row"
+    
+    // Cell
+    var col1 = document.createElement("div")
+    col1.className = "col-6" 
+    var new_cell = cell.cloneNode()
+    new_cell.name = "cell" + rowNum
+    col1.appendChild(new_cell)
+
+    // Value
+    var col2 = document.createElement("div")
+    col2.className = "col-6" 
+    var new_val = val.cloneNode(deep=true)
+    new_val.name = "val" + rowNum
+    col2.appendChild(new_val)
+    
+    row.appendChild(col1)
+    row.appendChild(col2)
+    return row
+}
+</script>
+
+
+
+{% endblock %}

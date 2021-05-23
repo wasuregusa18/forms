@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Customer Registration</title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+        <!-- favicon - django error -->
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+
+        <!-- jQuery and JS bundle w/ Popper.js -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+        {# Custom CSS#}
+        <link rel="stylesheet" href="{% static 'forms/css/forms.css' %}">
+
+
+<body class='loader'>
+
+    <!-- As a link -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="https://www.onishi-g.co.jp/">
+            <img src="{% static 'forms/SampleLogo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="sry">
+            大西</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                <a class="nav-link" href="{% url 'forms:index'%}">Home<span class="sr-only">(current)</span></a>
+                </li>
+                {% if  user.is_authenticated %} 
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'forms:download'%}">Download Form<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'forms:upload'%}">Upload Template<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/admin">Admin<span class="sr-only">(current)</span></a>
+                </li>
+                {% endif %}
+
+            </ul>
+            </div>
+
+        
+        {% if  user.is_authenticated %} 
+
+        <a href="{% url 'logout'%}" class="btn btn-lg btn-outline-primary">Log Out</a>  
+
+        {% else %}
+        <a href="{% url 'login'%}" class="btn btn-lg btn-outline-primary">Staff</a>  
+        {% endif %}
+    </nav>
+
+
+
+    {% block content %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4"><a class="text-dark" href="{% url 'forms:register' %}">Register</a></h1>
+          <a class="lead" href="{% url 'forms:cust-id' %}">Update/Delete</a>
+        </div>
+      </div>
+    {% endblock %}
+    
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
