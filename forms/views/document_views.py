@@ -29,11 +29,11 @@ class CreateDocument(LoginRequiredMixin, View):
         mapping schema is  "('Cell',customer.attr);('Cell2',customer.attr2)" """
         is_mapping = lambda x: re.search("^(?:cell|val)\d+$", x)
         mapping_keys = filter(is_mapping, q.keys())
-        assert len(list(mapping_keys))%2 ==0, "Uneven number of cells and values"
+        # assert len(mapping_keys)%2 ==0, "Uneven number of cells and values"
 
         mapping = []
         for cell_key in mapping_keys:
-            val_key = next(mapping_keys)  # iterating 2 at a time
+            val_key = next(mapping_keys)  # iterating 2 at a time - will error out if uneven number
             assert self.is_valid_mapping(cell_key,val_key,q),"Mapping is not valid"
             cell, val = q[cell_key], q[val_key]
             entry = f"('{cell}',customer.{val})"
@@ -53,19 +53,23 @@ class CreateDocument(LoginRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):
         #this needs to be rethought
-    
+        # print("post requested")
+        print(request.POST)
         try:
             mapping = self.extract_mapping(request.POST)
         except AssertionError as e:
+            print("mapping failed")
             return render(request, self.template_name, self.context_dict) 
 
         try:
             new_document = models.Document(template=request.FILES["template"], mapping=mapping)
             new_document.save()
+            print("new document successfully created")
             return redirect("forms:index")
 
         except:
             # new_context_dict = {'error': TEMPLATE_ERROR_MESSAGE}.update(self.context_dict)
+            print("document creation failed")
             return render(request, self.template_name, self.context_dict)  # this is bugging out
 
 
