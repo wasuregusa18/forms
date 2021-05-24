@@ -1,77 +1,88 @@
-<!DOCTYPE html>
 {% load static %}
-<html>
-    <head>
-        <title>Customer Registration</title>
-        <!-- CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<!DOCTYPE html>
+<html lang="en">
 
-        <!-- favicon - django error -->
-        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
-
-        <!-- jQuery and JS bundle w/ Popper.js -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
-        {# Custom CSS#}
-        <link rel="stylesheet" href="{% static 'forms/css/forms.css' %}">
+<head>
 
 
-<body class='loader'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- As a link -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="https://www.onishi-g.co.jp/">
-            <img src="{% static 'forms/SampleLogo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="sry">
-            大西</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
+    <!-- CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+
+    <!-- favicon - django error -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+
+    <!-- Custom CSS -->
+    <!-- <link rel="stylesheet" href="{% static 'forms/css/forms.css' %}"> -->
+
+    <title>Customer Registration</title>
+
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'forms/SampleLogo.png' %}" width="30" height="30" class="d-inline-block align-top"
+                alt="sry">
+            Your Company
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                <a class="nav-link" href="{% url 'forms:index'%}">Home<span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'forms:index'%}">Home <span class="sr-only">(current)</span></a>
                 </li>
-                {% if  user.is_authenticated %} 
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'forms:download'%}">Download Form<span class="sr-only">(current)</span></a>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'forms:download'%}">Download Form</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'forms:upload'%}">Upload Template<span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'forms:upload'%}">Upload Template</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/admin">Admin<span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Admin</a>
                 </li>
                 {% endif %}
-
             </ul>
-            </div>
 
-        
-        {% if  user.is_authenticated %} 
-
-        <a href="{% url 'logout'%}" class="btn btn-lg btn-outline-primary">Log Out</a>  
-
-        {% else %}
-        <a href="{% url 'login'%}" class="btn btn-lg btn-outline-primary">Staff</a>  
-        {% endif %}
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout'%}" class="btn btn-lg btn-outline-primary">Log Out</a>
+            {% else %}
+            <a href="{% url 'login'%}" class="btn btn-lg btn-outline-primary">Staff</a>
+            {% endif %}
+        </div>
     </nav>
 
-
-
-    {% block content %}
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-          <h1 class="display-4"><a class="text-dark" href="{% url 'forms:register' %}">Register</a></h1>
-          <a class="lead" href="{% url 'forms:cust-id' %}">Update/Delete</a>
+    <main role="main" class="container">
+        {% block content %}
+        <div class="jumbotron">
+            <h1>
+                <a class="text-dark" href="{% url 'forms:register' %}">Register</a>
+            </h1>
+            <a class="lead" href="{% url 'forms:cust-id' %}">Update/Delete</a>
         </div>
-      </div>
-    {% endblock %}
-    
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        {% endblock %}
+    </main>
 
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- javascript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
 </body>
+
 </html>

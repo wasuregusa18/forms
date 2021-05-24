@@ -14,11 +14,11 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="comp_name">Company Name</label>
-        <input type="text" class="form-control" email_address="comp_name" name="{{ form.comp_name.html_name}}">
+        <input type="text" class="form-control" id="comp_name" name="{{ form.comp_name.html_name}}">
       </div>
       <div class="form-group col-md-6">
         <label for="email">Email</label>
-        <input type="email" class="form-control" email_address="email" name="{{ form.email_address.html_name}}" {% if email_address %} value="{{email_address}}" readonly {% endif %} aria-describedby="emailHelp">  
+        <input type="email" class="form-control" id="email" name="{{ form.email_address.html_name}}" {% if email_address %} value="{{email_address}}" readonly {% endif %} aria-describedby="emailHelp">  
         {% if email_address %}
         <small email_address="emailHelp" class="form-text text-muted">To change email address, please delete current entry and resubmit a new one.</small>
         {% endif %}
@@ -26,30 +26,30 @@
     </div>
     <div class="form-group">
       <label for="address">Address</label>
-      <input type="text" class="form-control" email_address="address" placeholder="1234 Main St" name="{{ form.street1.html_name}}">
+      <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="{{ form.street1.html_name}}">
     </div>
     <div class="form-group">
       <label for="address2">Address 2</label>
-      <input type="text" class="form-control" email_address="address2" placeholder="Apartment, studio, or floor (optional)" name="{{ form.street2.html_name}}">
+      <input type="text" class="form-control" id="address2" placeholder="Apartment, studio, or floor (optional)" name="{{ form.street2.html_name}}">
     </div>
     <div class="form-row">
       <div class="form-group col-md-3">
         <label for="city">City</label>
-        <input type="text" class="form-control" email_address="city" name="{{ form.city.html_name}}">
+        <input type="text" class="form-control" id="city" name="{{ form.city.html_name}}">
       </div>
       <div class="form-group col-md-3">
         <label for="state">State</label>
-        <input type="text" class="form-control" email_address="state_text" name="{{ form.state.html_name}}">
-        <select class="form-control" email_address="state_dropdown" name="{{ form.state.html_name}}"></option><option value="Alabama">Alabama</option><option value="Alaska">Alaska</option><option value="Arizona">Arizona</option><option value="Arkansas">Arkansas</option><option value="California">California</option><option value="Colorado">Colorado</option><option value="Connecticut">Connecticut</option><option value="Delaware">Delaware</option><option value="District of Columbia">District of Columbia</option><option value="Florida">Florida</option><option value="Georgia">Georgia</option><option value="Guam">Guam</option><option value="Hawaii">Hawaii</option><option value="Idaho">Idaho</option><option value="Illinois">Illinois</option><option value="Indiana">Indiana</option><option value="Iowa">Iowa</option><option value="Kansas">Kansas</option><option value="Kentucky">Kentucky</option><option value="Louisiana">Louisiana</option><option value="Maine">Maine</option><option value="Maryland">Maryland</option><option value="Massachusetts">Massachusetts</option><option value="Michigan">Michigan</option><option value="Minnesota">Minnesota</option><option value="Mississippi">Mississippi</option><option value="Missouri">Missouri</option><option value="Montana">Montana</option><option value="Nebraska">Nebraska</option><option value="Nevada">Nevada</option><option value="New Hampshire">New Hampshire</option><option value="New Jersey">New Jersey</option><option value="New Mexico">New Mexico</option><option value="New York">New York</option><option value="North Carolina">North Carolina</option><option value="North Dakota">North Dakota</option><option value="Northern Marianas Islands">Northern Marianas Islands</option><option value="Ohio">Ohio</option><option value="Oklahoma">Oklahoma</option><option value="Oregon">Oregon</option><option value="Pennsylvania">Pennsylvania</option><option value="Puerto Rico">Puerto Rico</option><option value="Rhode Island">Rhode Island</option><option value="South Carolina">South Carolina</option><option value="South Dakota">South Dakota</option><option value="Tennessee">Tennessee</option><option value="Texas">Texas</option><option value="Utah">Utah</option><option value="Vermont">Vermont</option><option value="Virginia">Virginia</option><option value="Virgin Islands">Virgin Islands</option><option value="Washington">Washington</option><option value="West Virginia">West Virginia</option><option value="Wisconsin">Wisconsin</option><option value="Wyoming">Wyoming</option></select>
+        <input type="text" class="form-control" id="state_text" name="{{ form.state.html_name}}">
+        <select class="form-control" id="state_dropdown" name="{{ form.state.html_name}}"></option><option value="Alabama">Alabama</option><option value="Alaska">Alaska</option><option value="Arizona">Arizona</option><option value="Arkansas">Arkansas</option><option value="California">California</option><option value="Colorado">Colorado</option><option value="Connecticut">Connecticut</option><option value="Delaware">Delaware</option><option value="District of Columbia">District of Columbia</option><option value="Florida">Florida</option><option value="Georgia">Georgia</option><option value="Guam">Guam</option><option value="Hawaii">Hawaii</option><option value="Idaho">Idaho</option><option value="Illinois">Illinois</option><option value="Indiana">Indiana</option><option value="Iowa">Iowa</option><option value="Kansas">Kansas</option><option value="Kentucky">Kentucky</option><option value="Louisiana">Louisiana</option><option value="Maine">Maine</option><option value="Maryland">Maryland</option><option value="Massachusetts">Massachusetts</option><option value="Michigan">Michigan</option><option value="Minnesota">Minnesota</option><option value="Mississippi">Mississippi</option><option value="Missouri">Missouri</option><option value="Montana">Montana</option><option value="Nebraska">Nebraska</option><option value="Nevada">Nevada</option><option value="New Hampshire">New Hampshire</option><option value="New Jersey">New Jersey</option><option value="New Mexico">New Mexico</option><option value="New York">New York</option><option value="North Carolina">North Carolina</option><option value="North Dakota">North Dakota</option><option value="Northern Marianas Islands">Northern Marianas Islands</option><option value="Ohio">Ohio</option><option value="Oklahoma">Oklahoma</option><option value="Oregon">Oregon</option><option value="Pennsylvania">Pennsylvania</option><option value="Puerto Rico">Puerto Rico</option><option value="Rhode Island">Rhode Island</option><option value="South Carolina">South Carolina</option><option value="South Dakota">South Dakota</option><option value="Tennessee">Tennessee</option><option value="Texas">Texas</option><option value="Utah">Utah</option><option value="Vermont">Vermont</option><option value="Virginia">Virginia</option><option value="Virgin Islands">Virgin Islands</option><option value="Washington">Washington</option><option value="West Virginia">West Virginia</option><option value="Wisconsin">Wisconsin</option><option value="Wyoming">Wyoming</option></select>
       </div>
       <div class="form-group col-md-3">
         <label for="post_code">Post Code</label>
-        <input type="text" class="form-control" email_address="post_code" name="{{ form.post_code.html_name}}">
+        <input type="text" class="form-control" id="post_code" name="{{ form.post_code.html_name}}">
       </div>
       <div class="form-group col-md-3">
         <label for="country">Country</label>
         <!-- <input type="text" class="form-control" email_address="country" name="{{ form.country.html_name}}"> -->
-        <select type="text" class="form-control" email_address="country_dropdown" name="{{ form.country.html_name}}" onchange="updateState()">
+        <select type="text" class="form-control" id="country_dropdown" name="{{ form.country.html_name}}" onchange="updateState()">
           <option value="Afghanistan">Afghanistan</option>
           <option value="Åland Islands">Åland Islands</option>
           <option value="Albania">Albania</option>
@@ -301,7 +301,7 @@
     </div>
     <div class="form-group">
         <label for="phone_number">Phone Number</label>
-        <input type="tel" class="form-control" email_address="phone_number" name="{{ form.phone_number.html_name}}" placeholder="+15417543010" aria-describedby="phoneHelp">
+        <input type="tel" class="form-control" id="phone_number" name="{{ form.phone_number.html_name}}" placeholder="+15417543010" aria-describedby="phoneHelp">
       <small email_address="phoneHelp" class="form-text text-muted">Please include international dialing code</small>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -315,10 +315,9 @@
     var state_text = document.getElementById("state_text")
     var state_dropdown = document.getElementById("state_dropdown")
     state_text.style.display = "none"
-    
+
     function updateState(){
       var value = country.options[country.selectedIndex].value;
-      // alert(value)
       if (value === "United States"){
         state_text.style.display = "none"
         state_dropdown.style.display = "block"

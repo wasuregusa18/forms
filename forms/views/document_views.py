@@ -29,7 +29,7 @@ class CreateDocument(LoginRequiredMixin, View):
         mapping schema is  "('Cell',customer.attr);('Cell2',customer.attr2)" """
         is_mapping = lambda x: re.search("^(?:cell|val)\d+$", x)
         mapping_keys = filter(is_mapping, q.keys())
-        # assert len(mapping_keys)%2 ==0, "Uneven number of cells and values"
+        # assert len(list(mapping_keys))%2 ==0, "Uneven number of cells and values" #this consumes the filter
 
         mapping = []
         for cell_key in mapping_keys:
@@ -39,6 +39,7 @@ class CreateDocument(LoginRequiredMixin, View):
             entry = f"('{cell}',customer.{val})"
             mapping.append(entry)
         mapping = ";".join(mapping)
+        assert mapping, "Mapping is empty"
         return mapping
 
     def is_valid_mapping(self,cell_key:str, val_key:str, q:QueryDict) -> bool:
